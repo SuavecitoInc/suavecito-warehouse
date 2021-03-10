@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://suavecito-warehouse/./src/index.js"],"names":["console","log"],"mappings":";;;;AAAAA,OAAO,CAACC,GAAR,CAAY,aAAZ;AACAD,OAAO,CAACC,GAAR,CAAY,eAAZ;AACAD,OAAO,CAACC,GAAR,CAAY,eAAZ,E","file":"suavecito.bundle.js","sourcesContent":["console.log(\"hello world\");\nconsole.log(\"hello world 2\");\nconsole.log(\"hello world 3\");\n"],"sourceRoot":""}

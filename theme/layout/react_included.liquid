@@ -167,9 +167,8 @@
   {{ content_for_header }}
 </head>
 
-{% assign page_type_handle = request.page_type | handle %}
-
 <body class="template-{{ request.page_type | handle }}">
+
   {% if customer %}
     <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
@@ -183,7 +182,7 @@
   <div class="page-container drawer-page-content" id="PageContainer">
 
     <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
-      {% if customer or template.name == 'activate_account' or page_type_handle == "captcha" or template.name == 'reset_password' or settings.registration_mode == "open" and template.name == "register" %}
+      {% if customer or template.name == 'activate_account' or template.name == 'reset_password' %}
         {{ content_for_layout }}
       {% else %}
         {% render 'login-page' %}
@@ -204,6 +203,12 @@
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+
+  {% comment %}
+    react components below
+  {% endcomment %}
 
   {% if customer %}
     {% unless customer.email or template.name == 'account' %}
@@ -211,6 +216,14 @@
         window.location.replace("/account");
       </script>
     {% endunless %}
+  {% endif %}
+
+  {% if template.suffix == 'invite' %}
+    <script src="{{ 'invite_friend_form.bundle.js' | asset_url }}"></script>
+  {% endif %}
+
+  {% if template.name == 'account' %}
+    <script src="{{ 'complete_account_setup.bundle.js' | asset_url }}"></script>
   {% endif %}
 
 </body>

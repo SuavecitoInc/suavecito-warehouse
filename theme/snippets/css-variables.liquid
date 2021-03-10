@@ -63,19 +63,23 @@
     --color-border-form: {{ settings.color_text_field_border }};
     --color-border-form-darker: {{ settings.color_text_field_border | color_darken: 10}};
 
+    --color-burg: #802a19;
+    --color-yellow: #f9a726;
+    --color-yellow-light: #FCF0D4;
+
     --svg-select-icon: url({{ "ico-select.svg" | asset_url }});
     --slick-img-url: url({{ "ajax-loader.gif" | asset_url }});
 
     --font-weight-body--bold: {{ base_font_bold.weight | default: 700 }};
     --font-weight-body--bolder: {{ base_font_bolder.weight | default: 700 }};
 
-    --font-stack-header: {{ header_font.family }}, {{ header_font.fallback_families }};
+    --font-stack-header: "NexaRust", {{ header_font.fallback_families }};
     --font-style-header: {{ header_font.style }};
     --font-weight-header: {{ header_font.weight }};
 
     --font-stack-body: {{ base_font.family }}, {{ base_font.fallback_families }};
-    --font-style-body: {{ base_font.style }};
-    --font-weight-body: {{ base_font.weight }};
+    --font-style-body: "normal";
+    --font-weight-body: "bold"
 
     --font-size-header: {{ settings.type_header_base_size }};
 

@@ -1,0 +1,44 @@
+{
+  "name": "suavecito-warehouse",
+  "version": "1.0.0",
+  "description": "The theme for the invite only warehouse sale website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-watch": "BABEL_ENV=production npx babel --watch src --out-dir ./theme/assets/",
+    "watch": "BABEL_ENV=development webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuavecitoInc/suavecito-warehouse.git"
+  },
+  "author": "kenput3r",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SuavecitoInc/suavecito-warehouse/issues"
+  },
+  "homepage": "https://github.com/SuavecitoInc/suavecito-warehouse#readme",
+  "dependencies": {
+    "@babel/cli": "^7.12.16",
+    "@babel/core": "^7.12.16",
+    "@babel/preset-react": "^7.12.13",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-preset-react-app": "^10.0.0",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-wesbos": "^1.0.1",
+    "eslint-plugin-html": "^6.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1",
+    "styled-components": "^5.2.1",
+    "webpack": "^5.22.0",
+    "webpack-cli": "^4.5.0"
+  }
+}

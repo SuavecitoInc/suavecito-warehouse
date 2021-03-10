@@ -8,6 +8,21 @@
     "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
+    "name": "Registration Mode",
+    "settings": [
+      {
+        "type": "radio",
+        "id": "registration_mode",
+        "label": "Is registration open or invite only?",
+        "options": [
+          { "value": "open", "label": "Open" },
+          { "value": "invite-only", "label": "Invite Only"}
+        ],
+        "default": "open"
+      }
+    ]
+  },
+  {
     "name": {
       "cs": "Barvy",
       "da": "Farver",
@@ -659,6 +674,7 @@
           "zh-CN": "字体",
           "zh-TW": "字型"
         },
+        "info": "This will only effect the fallback fonts. Heading font is hardcoded to NexaRust in css-variables.liquid",
         "default": "helvetica_n7"
       },
       {
