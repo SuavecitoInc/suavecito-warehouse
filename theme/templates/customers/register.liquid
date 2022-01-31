@@ -1,72 +1,153 @@
-<div class="page-width">
-  <div class="grid">
-    <div class="grid__item medium-up--one-half medium-up--push-one-quarter">
+<div id="RegistrationPage">
 
-      <div class="form-vertical">
+    <div class="grid">
+      <div class="grid__item custom-item">
 
-        <h1 class="text-center">{{ 'customer.register.title' | t }}</h1>
+        <div id="CustomerRegistrationForm" class="form-vertical">
 
-        {%- assign formId = 'RegisterForm' -%}
-        {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
-          {% include 'form-status', form: form, form_id: formId %}
-
-          <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>
-          <input type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name">
-
-          <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>
-          <input type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name">
-
-          <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>
-          <input
-            type="email"
-            name="customer[email]"
-            id="{{ formId }}-email"
-            class="{% if form.errors contains 'email' %} input--error{% endif %}"
-            {% if form.email %} value="{{ form.email }}"{% endif %}
-            autocorrect="off"
-            autocapitalize="off"
-            autocomplete="email"
-            aria-required="true"
-            {%- if form.errors contains 'email' -%}
-              class="input--error"
-              aria-invalid="true"
-              aria-describedby="{{ formId }}-email-error"
-            {%- endif -%}
-          >
-          {%- if form.errors contains 'email' -%}
-            <span id="{{ formId }}-email-error" class="input-error-message">
-              <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-              {% include 'icon-error' %}
-              <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-            </span>
-          {%- endif -%}
-
-          <label for="{{ formId }}-password">{{ 'customer.register.password' | t }}</label>
-          <input
-            type="password"
-            name="customer[password]"
-            id="{{ formId }}-password"
-            class="{% if form.errors contains 'password' %} input--error{% endif %}"
-            aria-required="true"
-            {%- if form.errors contains 'password' -%}
-              class="input--error"
-              aria-invalid="true"
-              aria-describedby="{{ formId }}-password-error"
-            {%- endif -%}
-          >
-          {%- if form.errors contains 'password' -%}
-            <span id="{{ formId}}-password-error" class="input-error-message">
-              {% include 'icon-error' %}
-              <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
-            </span>
-          {%- endif -%}
-
-          <p class="text-center">
-            <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+          <h1 id="LoginHeading" class="text-center">{{ 'customer.register.title' | t }}</h1>
+          <p class="h2 text-center">
+            Welcome To Our Exclusive Online Warehouse Sale
           </p>
 
-        {% endform %}
+          {%- assign formId = 'RegisterForm' -%}
+          {% form 'create_customer', id: formId, novalidate: 'novalidate' %}
+            {% include 'form-status', form: form, form_id: formId %}
+
+            <label for="{{ formId }}-FirstName">{{ 'customer.register.first_name' | t }}</label>
+            <input type="text" name="customer[first_name]" id="{{ formId }}-FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocomplete="given-name">
+
+            <label for="{{ formId }}-LastName">{{ 'customer.register.last_name' | t }}</label>
+            <input type="text" name="customer[last_name]" id="{{ formId }}-LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocomplete="family-name">
+
+            <label for="{{ formId }}-email">{{ 'customer.register.email' | t }}</label>
+            <input
+              type="email"
+              name="customer[email]"
+              id="{{ formId }}-email"
+              class="{% if form.errors contains 'email' %} input--error{% endif %}"
+              {% if form.email %} value="{{ form.email }}"{% endif %}
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              aria-required="true"
+              {%- if form.errors contains 'email' -%}
+                class="input--error"
+                aria-invalid="true"
+                aria-describedby="{{ formId }}-email-error"
+              {%- endif -%}
+            >
+            {%- if form.errors contains 'email' -%}
+              <span id="{{ formId }}-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+              </span>
+            {%- endif -%}
+
+            <label for="{{ formId }}-password">{{ 'customer.register.password' | t }}</label>
+            <input
+              type="password"
+              name="customer[password]"
+              id="{{ formId }}-password"
+              class="{% if form.errors contains 'password' %} input--error{% endif %}"
+              aria-required="true"
+              {%- if form.errors contains 'password' -%}
+                class="input--error"
+                aria-invalid="true"
+                aria-describedby="{{ formId }}-password-error"
+              {%- endif -%}
+            >
+            {%- if form.errors contains 'password' -%}
+              <span id="{{ formId}}-password-error" class="input-error-message">
+                {% include 'icon-error' %}
+                <span>{{ form.errors.translated_fields['password'] | capitalize }} {{ form.errors.messages['password'] }}.</span>
+              </span>
+            {%- endif -%}
+
+            <p class="text-center">
+              <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn">
+            </p>
+
+            <div class="text-center">
+              <p><a href="/">&larr; Login</a></p>
+            </div>
+
+          {% endform %}
+        </div>
       </div>
     </div>
-  </div>
+
 </div>
+
+<style>
+  #RegistrationPage {
+    background-image: url("{{ 'collage_grayscale.jpg' | asset_img_url: '2048x' }}");
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100%;
+    margin-top: -55px;
+    padding-left: 22px;
+  }
+  @media (min-width: 768px) {
+    #RegistrationPage {
+      padding-left: 30px;
+    }
+  }
+  @media (max-width: 749px) {
+    #RegistrationPage {
+      margin-top: -35px;
+    }
+  }
+
+  #RegistrationPage .grid {
+    align-self: center;
+    width: 100%;
+  }
+
+  #RegistrationPage .grid__item.custom-item {
+    width: 590px;
+    max-width: 100%;
+    margin: 0 auto;
+    float: none;
+    left: 0;
+  }
+
+  #RegistrationPage #CustomerRegistrationForm, #RegistrationPage #RecoverPasswordForm {
+    background-color: rgba(0,0,0,0.8);
+    padding: 20px;
+  }
+
+  #RegistrationPage #CustomerRegistrationForm h1 {
+    color: var(--color-yellow);
+    font-size: calc(((var(--font-h2-desktop))/ (var(--font-size-base))) * 1.5em);
+  }
+
+  #RegistrationPage .h2 {
+    color: #ffffff;
+  }
+
+  #RegistrationPage .btn {
+    background-color: var(--color-yellow);
+    color: #000000;
+  }
+
+  #RegistrationPage a {
+    color: #ffffff;
+  }
+
+  #RegistrationPage h2 {
+    color: var(--color-yellow);
+  }
+
+  #RegistrationPage p {
+    color: #ffffff;
+  }
+
+  #RegistrationPage #CustomerRegistrationForm label {
+    color: #fff;
+  }
+</style>

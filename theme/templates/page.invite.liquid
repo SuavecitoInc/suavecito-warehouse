@@ -1,0 +1,82 @@
+{% layout 'react_included' %}
+
+{% if customer %}
+  {% assign customer_name = customer.first_name | append: " " | append: customer.last_name %}
+{% else %}
+  {% assign customer_name = "Your friend" %}
+{% endif %}
+
+<div class="page-width">
+  <div class="grid">
+    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+      <div class="section-header text-center">
+        <h1>{{ page.title }}</h1>
+      </div>
+
+      <div class="rte">
+        {{ page.content }}
+      </div>
+
+      <div id="invite-friend-form" data-loading-gif-url="{{ 'loading.gif' | asset_img_url: '75x' }}" data-customer-name="{{customer_name}}">
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .v-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .text-friend {
+    margin-bottom: 3rem;
+  }
+
+  .text-friend .h4 {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .text-friend .h4 span {
+    border-bottom: 3px solid #000000;
+    height: 0;
+    margin: 0 5px;
+    width: 150px;
+  }
+
+  #invite-friend-form {
+    width: 640px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  #invite-friend-form form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .form-group {
+    margin-bottom: 1.45rem;
+    width: 50%;
+  }
+
+  .form-group:nth-of-type(odd) {
+    padding-right: 0.725rem;
+  }
+
+  .form-group:nth-of-type(even) {
+    padding-left: 0.725rem;
+  }
+
+  .form-group input {
+    width: 100%;
+  }
+</style>

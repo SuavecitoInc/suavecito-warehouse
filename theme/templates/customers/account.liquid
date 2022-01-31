@@ -1,8 +1,16 @@
+{% unless customer.email %}
+  {% layout 'react_included' %}
+{% endunless %}
+
 <div class="page-width">
   <div class="section-header text-center">
     <h1>{{ 'customer.account.title' | t }}</h1>
     {{ 'layout.customer.log_out' | t | customer_logout_link }}
   </div>
+
+  {% unless customer.email %}
+    <div id="CompleteAccountSetup" class="form-container form-message form-message--error" data-customer-first-name="{{customer.first_name}}" data-customer-phone="{{customer.phone}}" data-customer-id="{{customer.id}}" data-loading-gif-url="{{ 'loading-red.gif' | asset_img_url: '75x' }}"></div>
+  {% endunless %}
 
   <div class="grid myaccount">
     <div class="grid__item myaccount__order-history">
@@ -55,3 +63,44 @@
     </div>
   </div>
 </div>
+
+<style>
+  .v-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form-container {
+    margin-bottom: 1.45rem;
+    padding: 1.45rem 5px;
+  }
+
+  .form-container form {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .form-container .btn {
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 1024px) {
+    .form-group {
+      width: 50%;
+      padding: 20px;
+    }
+    .form-group input {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .form-group {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,216 @@
+<div id="LoginPage">
+  <div class="grid">
+
+    <div class="grid__item custom-item">
+      <div class="form-message form-message--success hide" id="ResetSuccess" tabindex="-1">
+        {{ 'customer.recover_password.success' | t }}
+      </div>
+
+      <div id="CustomerLoginForm" class="form-vertical">
+
+        <h1 id="LoginHeading" class="text-center">Suavecito Warehouse Sale</h1>
+        <p class="h2 text-center">
+          Welcome To Our Exclusive Online Warehouse Sale
+        </p>
+
+        {% form 'customer_login', novalidate: 'novalidate' %}
+          <input type="hidden" name="checkout_url" value="/">
+
+          {%- if form.errors -%}
+            <div class="form-message form-message--error">
+              <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <label for="CustomerEmail" class="visually-hidden">{{ 'customer.login.email' | t }}</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="{{ 'customer.login.email' | t }}"
+            {%- if form.errors contains 'form' -%}
+              class="input--error"
+              aria-invalid="true"
+            {%- endif -%}
+            >
+
+          {% if form.password_needed %}
+            <label for="CustomerPassword" class="visually-hidden">{{ 'customer.login.password' | t }}</label>
+            <input
+              type="password"
+              value=""
+              name="customer[password]"
+              placeholder="{{ 'customer.login.password' | t }}"
+              id="CustomerPassword"
+              {%- if form.errors contains 'form' -%}
+                class="input--error"
+                aria-invalid="true"
+              {%- endif -%}
+            >
+          {% endif %}
+          
+          {% if settings.registration_mode == "open" %}
+          <div class="text-center">
+            <p><a href="/account/register">Need an account? Register &rarr;</a></p>
+          </div>
+          {% endif %}
+
+          <div class="text-center">
+            {% if form.password_needed %}
+              <p><a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a></p>
+            {% endif %}
+
+            <input type="submit" class="btn" value="{{ 'customer.login.sign_in' | t }}">
+
+          </div>
+
+          <div class="text-center">
+            <p><a href="https://www.suavecito.com">Looking for Suavecito.com?</a></p>
+          </div>
+
+        {% endform %}
+      </div>
+
+      <div id="RecoverPasswordForm" class="hide">
+
+        <div class="text-center">
+          <h2 id="RecoverHeading">{{ 'customer.recover_password.title' | t }}</h2>
+          <p style="margin-bottom: 1.45rem;">{{ 'customer.recover_password.subtext' | t }} If you do not receive an email, you may not have an account on this site. Looking for <a href="https://www.suavecito.com" style="color: var(--color-yellow); font-weight: bold; text-decoration: underline;">Suavecito.com</a>?</p>
+        </div>
+
+        <div class="form-vertical">
+          {% form 'recover_customer_password' %}
+
+            {% comment %}
+              Add a hidden span to indicate the form was submitted succesfully.
+            {% endcomment %}
+            {% if form.posted_successfully? %}
+              <span class="hide reset-password-success"></span>
+            {% endif %}
+
+            <label for="RecoverEmail" class="visually-hidden">{{ 'customer.recover_password.email' | t }}</label>
+            <input
+              type="email"
+              value=""
+              name="email"
+              id="RecoverEmail"
+              class="input-full{% if form.errors %} input--error{% endif %}"
+              autocorrect="off"
+              autocapitalize="off"
+              placeholder="{{ 'customer.recover_password.email' | t }}"
+              tabindex="1"
+              {% if form.errors %}
+                aria-invalid="true"
+                aria-describedby="RecoverEmail-email-error"
+              {%- endif -%}
+              >
+            {%- if form.errors -%}
+              <span id="RecoverEmail-email-error" class="input-error-message">
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span>{{ form.errors.messages['form'] }}</span>
+              </span>
+            {%- endif -%}
+
+            <div class="text-center">
+              <p>
+                <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+              </p>
+
+              <a href="#LoginHeading" id="HideRecoverPasswordLink">{{ 'customer.recover_password.cancel' | t }}</a>
+            </div>
+          {% endform %}
+        </div>
+
+      </div>
+
+      {% comment %}
+        If accounts are set as optional, the following will be shown as an option
+        during checkout, not on the default /login page.
+      {% endcomment %}
+      {% if shop.checkout.guest_login %}
+        <div class="text-center">
+          <hr class="hr--invisible">
+          <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+          {% form 'guest_login' %}
+            <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+          {% endform %}
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+<style>
+  #LoginPage {
+    background-image: url("{{ 'collage_grayscale.jpg' | asset_img_url: '2048x' }}");
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100%;
+    margin-top: -55px;
+    padding-left: 22px;
+  }
+  @media (min-width: 768px) {
+    #LoginPage {
+      padding-left: 30px;
+    }
+  }
+  @media (max-width: 749px) {
+    #LoginPage {
+      margin-top: -35px;
+    }
+  }
+
+  #LoginPage .grid {
+    align-self: center;
+    width: 100%;
+  }
+
+  #LoginPage .grid__item.custom-item {
+    width: 590px;
+    max-width: 100%;
+    margin: 0 auto;
+    float: none;
+    left: 0;
+  }
+
+  #LoginPage #CustomerLoginForm, #LoginPage #RecoverPasswordForm {
+    background-color: rgba(0,0,0,0.8);
+    padding: 20px;
+  }
+
+  #LoginPage #CustomerLoginForm h1 {
+    color: var(--color-yellow);
+    font-size: calc(((var(--font-h2-desktop))/ (var(--font-size-base))) * 1.5em);
+  }
+
+  #LoginPage .h2 {
+    color: #ffffff;
+  }
+
+  #LoginPage .btn {
+    background-color: var(--color-yellow);
+    color: #000000;
+  }
+
+  #LoginPage a {
+    color: #ffffff;
+  }
+
+  #LoginPage h2 {
+    color: var(--color-yellow);
+  }
+
+  #LoginPage p {
+    color: #ffffff;
+  }
+</style>
