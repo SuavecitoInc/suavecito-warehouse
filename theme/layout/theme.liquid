@@ -170,7 +170,6 @@
 {% assign page_type_handle = request.page_type | handle %}
 
 <body class="template-{{ request.page_type | handle }}">
-
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
   {%- if settings.enable_ajax -%}
@@ -186,13 +185,12 @@
       {{ content_for_layout }}
     </main>
 
-    {% if customer %}
-      {% section 'footer' %}
 
-      <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
-        {{- 'sections.slideshow.navigation_instructions' | t -}}
-      </div>
-    {% endif %}
+    {% section 'footer' %}
+
+    <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
+      {{- 'sections.slideshow.navigation_instructions' | t -}}
+    </div>
 
   </div>
 
@@ -200,14 +198,6 @@
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
-
-  {% if customer %}
-    {% unless customer.email or template.name == 'account' %}
-      <script>
-        window.location.replace("/account");
-      </script>
-    {% endunless %}
-  {% endif %}
 
 </body>
 </html>

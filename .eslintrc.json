@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "wesbos"
+  ],
+  "rules": {
+    "quotes": [2, "double", { "avoidEscape": true, "allowTemplateLiterals": true}],
+    "no-plusplus": [0],
+    "react/prop-types": [0],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": false,
+        "tabWidth": 2,
+        "arrowParens": "avoid",
+        "semi": false
+      }
+    ]
+  }
+}
