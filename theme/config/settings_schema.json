@@ -1395,6 +1395,23 @@
     ]
   },
   {
+    "name": "Sale",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "sale_ended",
+        "label": "Sale Ended",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "sale_ended_message",
+        "label": "Sale Ended Message",
+        "default": "The Sale Has Ended."
+      }
+    ]
+  },
+  {
     "name": {
       "cs": "Favikona",
       "da": "Favoritikon",
