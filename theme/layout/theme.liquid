@@ -170,33 +170,27 @@
 {% assign page_type_handle = request.page_type | handle %}
 
 <body class="template-{{ request.page_type | handle }}">
-  {% if customer %}
-    <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
-    {%- if settings.enable_ajax -%}
-      {% include 'cart-popup' %}
-    {%- endif -%}
+  {%- if settings.enable_ajax -%}
+    {% include 'cart-popup' %}
+  {%- endif -%}
 
-    {% section 'header' %}
-  {% endif %}
+  {% section 'header' %}
+
 
   <div class="page-container drawer-page-content" id="PageContainer">
 
     <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
-      {% if customer or template.name == 'activate_account' or page_type_handle == "captcha" or template.name == 'reset_password' or settings.registration_mode == "open" and template.name == "register" %}
-        {{ content_for_layout }}
-      {% else %}
-        {% render 'login-page' %}
-      {% endif %}
+      {{ content_for_layout }}
     </main>
 
-    {% if customer %}
-      {% section 'footer' %}
 
-      <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
-        {{- 'sections.slideshow.navigation_instructions' | t -}}
-      </div>
-    {% endif %}
+    {% section 'footer' %}
+
+    <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
+      {{- 'sections.slideshow.navigation_instructions' | t -}}
+    </div>
 
   </div>
 
@@ -204,14 +198,6 @@
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
-
-  {% if customer %}
-    {% unless customer.email or template.name == 'account' %}
-      <script>
-        window.location.replace("/account");
-      </script>
-    {% endunless %}
-  {% endif %}
 
 </body>
 </html>
