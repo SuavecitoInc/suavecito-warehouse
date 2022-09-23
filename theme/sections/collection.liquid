@@ -1,11 +1,14 @@
+{%- assign collection = collections[section.settings.collection] -%}
+
 <div class="page-width">
   {% if section.settings.title != blank %}
     <div class="section-header text-center">
-      <h2>{{ section.settings.title | escape }}</h2>
+      <h2>
+        <a href="{{ collection.url }}">{{ section.settings.title | escape }} | View All &rarr;</a>
+      </h2>
     </div>
   {% endif %}
 
-  {%- assign collection = collections[section.settings.collection] -%}
 
   {% case section.settings.grid %}
     {% when 2 %}
@@ -49,14 +52,16 @@
     {% endfor %}
   </ul>
 
-  {% if section.settings.show_view_all %}
+  {% if section.settings.show_view_all and collection.products.size > product_limit %}
     <hr class="hr--invisible" aria-hidden="true" />
-    <div class="text-center">
+    <div class="text-right">
       <a href="{{ collection.url }}" class="btn" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
-        {{ 'collections.general.view_all' | t }}
+        {{ 'collections.general.view_all' | t }} &rarr;
       </a>
     </div>
   {% endif %}
+  
+  <hr style="margin-bottom: 0;" />
 
 </div>
 
