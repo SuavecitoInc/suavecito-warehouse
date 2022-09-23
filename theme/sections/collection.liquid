@@ -1,10 +1,15 @@
 {%- assign collection = collections[section.settings.collection] -%}
+{%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
 
 <div class="page-width">
   {% if section.settings.title != blank %}
     <div class="section-header text-center">
       <h2>
+      {% if collection.products.size > product_limit %}
         <a href="{{ collection.url }}">{{ section.settings.title | escape }} | View All &rarr;</a>
+      {% else %}
+        {{ section.settings.title | escape }}
+      {% endif %}
       </h2>
     </div>
   {% endif %}
@@ -24,8 +29,6 @@
       {%- assign max_height = 195 -%}
       {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
   {% endcase %}
-
-  {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
 
   <ul class="grid grid--uniform grid--view-items">
     {% for product in collection.products limit: product_limit %}
