@@ -1,3 +1,22 @@
+<style>
+.disable {
+  pointer-events: none;
+  opacity: .75;
+}
+.disclosure__input {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+  margin-bottom: 15px;
+}
+@media screen and (max-width: 749px) {
+  .disclosure__input {
+    justify-content: center;
+  }
+}
+</style>
+
+
 <div class="page-width" data-section-id="{{ section.id }}" data-section-type="cart-template" data-ajax-enabled="{{ section.settings.cart_ajax_enable }}">
 
   <div {% if cart.item_count == 0 %}class="hide" {% endif %}data-cart-wrapper>
@@ -275,14 +294,20 @@
             {%- endcapture -%}
             <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
             <div class="cart__buttons-container">
+              <div class="disclosure__input">
+                <label for="disclosure-check">{{section.settings.disclosure_label}}</label>
+                <input type="checkbox" name="disclosure-check" id="disclosure-check">
+              </div>
               <div class="cart__submit-controls">
+              
                 {%- unless section.settings.cart_ajax_enable -%}
                 <input type="submit" name="update"
                   class="cart__submit btn btn--secondary"
                   value="{{ 'cart.general.update' | t }}">
                 {%- endunless -%}
                 <input type="submit" name="checkout"
-                  class="cart__submit btn btn--small-wide"
+                  class="cart__submit btn btn--small-wide disable"
+                  id="checkout-btn"
                   value="{{ 'cart.general.checkout' | t }}">
               </div>
 
@@ -317,6 +342,27 @@
   </div>
 </div>
 
+
+<script>
+
+const checkbox = document.querySelector("#disclosure-check")
+
+console.log('checkbox', checkbox)
+const checkoutBtn = document.querySelector("#checkout-btn")
+console.log('checkoout btn', checkoutBtn)
+
+function toggleCheckoutBtn() {
+  console.log('checkbox', checkbox.checked)
+  if (checkbox.checked) {
+    checkoutBtn.classList.remove('disable')
+  }
+  else {
+    checkoutBtn.classList.add('disable')
+  }
+}
+
+checkbox.addEventListener("change", toggleCheckoutBtn)
+</script>
 
 
 {% schema %}
@@ -423,6 +469,12 @@
         "zh-TW": "啟用購物車備註"
       },
       "default": false
+    },
+    {
+      "type": "text",
+      "id": "disclosure_label",
+      "label": "Label for checkout disclosure",
+      "default": "I agree with the terms and conditions."
     }
   ]
 }
