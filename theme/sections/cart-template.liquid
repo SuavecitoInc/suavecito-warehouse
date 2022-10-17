@@ -9,6 +9,9 @@
   column-gap: 10px;
   margin-bottom: 15px;
 }
+.cart__submit-controls .btn[disabled] {
+  background-color: var(--color-btn-primary);
+}
 @media screen and (max-width: 749px) {
   .disclosure__input {
     justify-content: center;
@@ -306,7 +309,8 @@
                   value="{{ 'cart.general.update' | t }}">
                 {%- endunless -%}
                 <input type="submit" name="checkout"
-                  class="cart__submit btn btn--small-wide disable"
+                  disabled
+                  class="cart__submit btn btn--small-wide"
                   id="checkout-btn"
                   value="{{ 'cart.general.checkout' | t }}">
               </div>
@@ -347,17 +351,15 @@
 
 const checkbox = document.querySelector("#disclosure-check")
 
-console.log('checkbox', checkbox)
 const checkoutBtn = document.querySelector("#checkout-btn")
-console.log('checkoout btn', checkoutBtn)
 
 function toggleCheckoutBtn() {
   console.log('checkbox', checkbox.checked)
   if (checkbox.checked) {
-    checkoutBtn.classList.remove('disable')
+    checkoutBtn.disabled = false
   }
   else {
-    checkoutBtn.classList.add('disable')
+    checkoutBtn.disabled = true
   }
 }
 
