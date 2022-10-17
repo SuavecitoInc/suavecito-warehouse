@@ -1,8 +1,4 @@
 <style>
-.disable {
-  pointer-events: none;
-  opacity: .75;
-}
 .disclosure__input {
   display: flex;
   justify-content: flex-end;
@@ -354,7 +350,6 @@ const checkbox = document.querySelector("#disclosure-check")
 const checkoutBtn = document.querySelector("#checkout-btn")
 
 function toggleCheckoutBtn() {
-  console.log('checkbox', checkbox.checked)
   if (checkbox.checked) {
     checkoutBtn.disabled = false
   }
