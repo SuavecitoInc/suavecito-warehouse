@@ -5,8 +5,9 @@
   column-gap: 10px;
   margin-bottom: 15px;
 }
-.cart__submit-controls .btn[disabled] {
-  background-color: var(--color-btn-primary);
+.disable {
+  pointer-events: none;
+  opacity: .5
 }
 @media screen and (max-width: 749px) {
   .disclosure__input {
@@ -292,11 +293,11 @@
               {%- endif -%}
             {%- endcapture -%}
             <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
-            <div class="cart__buttons-container">
               <div class="disclosure__input">
                 <label for="disclosure-check">{{section.settings.disclosure_label}}</label>
                 <input type="checkbox" name="disclosure-check" id="disclosure-check">
               </div>
+            <div class="cart__buttons-container disable">
               <div class="cart__submit-controls">
               
                 {%- unless section.settings.cart_ajax_enable -%}
@@ -305,7 +306,6 @@
                   value="{{ 'cart.general.update' | t }}">
                 {%- endunless -%}
                 <input type="submit" name="checkout"
-                  disabled
                   class="cart__submit btn btn--small-wide"
                   id="checkout-btn"
                   value="{{ 'cart.general.checkout' | t }}">
@@ -347,14 +347,16 @@
 
 const checkbox = document.querySelector("#disclosure-check")
 
-const checkoutBtn = document.querySelector("#checkout-btn")
+const checkoutContainer = document.querySelector(".cart__buttons-container")
 
 function toggleCheckoutBtn() {
   if (checkbox.checked) {
-    checkoutBtn.disabled = false
+    //checkoutBtn.disabled = false
+    checkoutContainer.classList.remove("disable")
   }
   else {
-    checkoutBtn.disabled = true
+    //checkoutBtn.disabled = true
+    checkoutContainer.classList.add("disable")
   }
 }
 
