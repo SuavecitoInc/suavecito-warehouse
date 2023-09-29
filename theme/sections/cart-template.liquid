@@ -1,17 +1,32 @@
 <style>
 .disclosure__input {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   column-gap: 10px;
   margin-bottom: 15px;
+  flex-direction: row-reverse;
+  align-items: center;
 }
 .disable {
   pointer-events: none;
   opacity: .5
 }
+.disclosure__input label {
+  color: red;
+  font-weight: bold;
+}
+.disclosure__input input {
+  width: 15px;
+}
+.disclosure__input input[type="checkbox"]:checked + label {
+   color: initial;
+}
 @media screen and (max-width: 749px) {
   .disclosure__input {
     justify-content: center;
+  }
+  .disclosure__input label{
+    font-size: 18px;
   }
 }
 </style>
@@ -294,8 +309,8 @@
             {%- endcapture -%}
             <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
               <div class="disclosure__input">
-                <label for="disclosure-check">{{section.settings.disclosure_label}}</label>
                 <input type="checkbox" name="disclosure-check" id="disclosure-check">
+                <label for="disclosure-check">{{section.settings.disclosure_label}}</label>
               </div>
             <div class="cart__buttons-container disable">
               <div class="cart__submit-controls">
